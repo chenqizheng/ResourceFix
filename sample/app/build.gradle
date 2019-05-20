@@ -9,7 +9,7 @@ apply plugin: 'me.chen.resourcefix'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "me.chen.fontscalableplugin"
+        applicationId "me.chen.sample"
         minSdkVersion 22
         targetSdkVersion 28
         versionCode 1
