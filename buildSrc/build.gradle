@@ -1,0 +1,38 @@
+Properties properties = new Properties()
+properties.load(file('../gradle.properties').newDataInputStream())
+def applyRemotePlugin = properties.containsKey('applyRemotePlugin') ? properties.get('applyRemotePlugin'): false
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.21"
+    }
+}
+
+if (!Boolean.valueOf(applyRemotePlugin)) {
+
+    apply plugin: 'kotlin'
+
+
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        compile gradleApi()
+        compile localGroovy()
+        compile 'com.android.tools.build:gradle:3.4.0'
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', '../gradle-plugin/src/main/java']
+            resources.srcDirs = ['src/main/resources', '../gradle-plugin/src/main/resources']
+        }
+    }
+}
+
